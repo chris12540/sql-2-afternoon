@@ -26,8 +26,8 @@ ON al.ArtistId = ar.ArtistId;
 
 -- 5 --
 SELECT pt.TrackId
-FROM Playlist pl
-JOIN PlaylistTrack pt
+FROM PlaylistTrack pt
+JOIN Playlist pl 
 ON pl.PlaylistId = pt.PlaylistId
 WHERE pl.Name = "Music";
 
@@ -82,17 +82,48 @@ IN (
 );
 
 -- 2 --
-
+SELECT TrackId
+FROM PlaylistTrack
+WHERE PlaylistId
+IN (
+  SELECT PLaylistId
+  FROM Playlist
+  WHERE Name = "Music"
+);
 
 -- 3 --
-
+SELECT Name FROM Track
+WHERE TrackId
+IN (
+  SELECT TrackId FROM PlaylistTrack
+  WHERE PlaylistId = 5
+);
 
 -- 4 --
-
+SELECT Name FROM Track
+WHERE GenreId
+IN (
+  SELECT GenreId FROM Genre
+  WHERE Name = 'Comedy'
+);
 
 -- 5 --
-
+SELECT Name FROM Track
+WHERE AlbumId
+IN (
+  SELECT AlbumId FROM Album
+  WHERE Title = 'Fireball'
+);
 
 -- 6 --
-
+SELECT Name FROM Track
+WHERE AlbumId
+IN (
+  SELECT AlbumId FROM Album
+  WHERE ArtistId
+  IN (
+    SELECT ArtistId FROM Artist
+    WHERE Name = "Queen"
+  )
+);
 
