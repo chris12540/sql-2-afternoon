@@ -244,7 +244,7 @@ UPDATE orders SET userId = 3 WHERE orderId = 2;
 SELECT u.name, p.name, p.price
 FROM users u
 JOIN orders o
-ON u.id = o.userId
+ON u.id = o.orderId
 JOIN products p
 ON p.id = o.productId
 WHERE u.id = 1;
@@ -253,7 +253,7 @@ WHERE u.id = 1;
 SELECT u.name, COUNT(*)
 FROM users u
 JOIN orders o
-ON u.id = o.userId
+ON u.id = o.orderId
 JOIN products p
 ON p.id = o.productId
 GROUP BY u.name;
@@ -262,7 +262,7 @@ GROUP BY u.name;
 SELECT u.name, SUM(p.price)
 FROM users u
 JOIN orders o
-ON u.id = o.userId
+ON u.id = o.orderId
 JOIN products p
 ON p.id = o.productId
 GROUP BY u.name;
